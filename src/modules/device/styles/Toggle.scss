@@ -1,0 +1,58 @@
+@use "../../shared/styles/variables" as *;
+
+.toggle {
+  @include flex-center-between;
+
+  &__label {
+    font-weight: 500;
+    color: $gray-dark;
+  }
+
+  &__button {
+    height: 1.5rem;
+    width: 2.75rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    border-radius: 9999px;
+    background-color: #e5e7eb;
+    border: 2px solid transparent;
+    @include transition(background-color);
+
+    &:focus {
+      outline: none;
+      box-shadow:
+        0 0 0 2px $white,
+        0 0 0 4px $brand-teal;
+    }
+
+    &--checked {
+      background-color: $brand-teal;
+    }
+
+    @include reduce-motion {
+      transition: none;
+    }
+  }
+
+  &__slider {
+    width: 1.25rem;
+    height: 1.25rem;
+    pointer-events: none;
+    display: inline-block;
+    border-radius: 9999px;
+    box-shadow: $shadow-sm;
+    transform: translateX(0);
+    background-color: $white;
+    @include transition(transform, 200ms);
+
+    &--checked {
+      transform: translateX(1.25rem);
+    }
+
+    @include reduce-motion {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@use "./variables" as *;
+
+.sticky-footer {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem;
+  position: fixed;
+  box-shadow: $shadow-md;
+  background-color: $white;
+  border: 1px solid #ececec;
+  @include flex-center-end;
+
+  @media (max-width: $breakpoint-md) {
+    padding-left: 0px;
+    padding-right: 0px;
+    justify-content: center;
+
+    .sticky-footer__button {
+      width: 15rem;
+      margin-right: 0 !important;
+    }
+  }
+
+  &__button {
+    border: none;
+    opacity: 0.8;
+    width: 16.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+    color: $brand-teal;
+    margin-right: 8.3rem;
+    padding: 0.75rem 1.5rem;
+    background-color: $yellow;
+    font-family: $font-main-bold;
+    @include transition(background-color);
+    @extend %focus-ring;
+
+    @include reduce-motion {
+      transition: none;
+    }
+
+    &:hover:not(:disabled) {
+      opacity: 1;
+      background-color: $yellow;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      color: $gray-dark;
+      cursor: not-allowed;
+      background-color: $gray-light;
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.98);
+      background-color: $yellow;
+    }
+
+    @include high-contrast {
+      border: 2px solid currentColor;
+    }
+  }
+}

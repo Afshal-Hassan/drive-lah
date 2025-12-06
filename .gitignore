@@ -1,0 +1,54 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules
+node_modules
+
+# Build
+dist
+dist-ssr
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Bun lockfile
+bun.lock
+
+# Test
+test-results/
+
+# Editor and OS files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Playwright reports
+playwright-report/
+
+# Coverage
+coverage/
+
+# TypeScript build
+*.tsbuildinfo
+
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Ignore local debug files or config files that shouldn't be committed
+*.local

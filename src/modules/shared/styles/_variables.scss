@@ -1,0 +1,141 @@
+/* ==========================
+   COLORS
+========================== */
+$white: #ffffff;
+$yellow: #ffcd05;
+$charcoal: #4a4a4a;
+$gray-dark: #1f2937;
+$brand-teal: #00a3ad;
+$gray-light: #b2b2b2;
+$background: #fcfcfc;
+$very-light-gray: #d6d6d6;
+$brand-teal-dark: #026786;
+
+/* ==========================
+   FONTS
+========================== */
+$font-main: "Museo Sans Rounded", "sans serif";
+$font-main-bold: "Museo Sans Rounded Bold", "sans-serf";
+
+/* ==========================
+   SHADOWS
+========================== */
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+/* ==========================
+   TRANSITIONS
+========================== */
+$transition-fast: 0.2s ease-in-out;
+$transition-medium: 0.3s ease-in-out;
+
+/* ==========================
+   DEVICE BREAKPOINTS
+========================== */
+$breakpoint-sm: 480px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1334px;
+
+/* ==========================
+   MIXINS
+========================== */
+
+// Flex utilities
+
+@mixin flex-start {
+  display: flex;
+  align-items: start;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-center-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-col-center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@mixin flex-col-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+// Transition helper
+@mixin transition($property: all, $duration: $transition-fast) {
+  transition: $property $duration;
+}
+
+// Focus-visible (accessibility)
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 1px solid $white;
+    border-radius: 1px;
+  }
+}
+
+// Reduced motion support
+@mixin reduce-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// High contrast mode support
+@mixin high-contrast {
+  @media (prefers-contrast: high) {
+    @content;
+  }
+}
+
+// Interactive scale effect
+@mixin scale-on-interact($hover: 1.05, $active: 0.95) {
+  &:hover {
+    transform: scale($hover);
+  }
+  &:active {
+    transform: scale($active);
+  }
+}
+
+/* ==========================
+   PLACEHOLDERS
+========================== */
+
+// Sidebar active item style
+%active-sidebar-item {
+  border-left: 3px solid $brand-teal;
+  padding-left: 0.6rem;
+  margin-left: -0.75rem;
+
+  @include high-contrast {
+    border-left-color: $white;
+  }
+}
+
+// Focus ring placeholder
+%focus-ring {
+  @include focus-visible;
+}

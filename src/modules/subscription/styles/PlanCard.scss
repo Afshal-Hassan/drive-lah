@@ -1,0 +1,103 @@
+@use "../../shared/styles/variables" as *;
+
+.plan-card {
+  height: 100%;
+  cursor: pointer;
+  padding: 1.25rem;
+  position: relative;
+  border-radius: 0.5rem;
+  background-color: $white;
+  border: 1px solid $gray-light;
+  @include flex-col;
+  @include transition(all, $transition-medium);
+  @extend %focus-ring;
+
+  &:hover {
+    box-shadow: $shadow-sm;
+    border-color: $brand-teal;
+  }
+
+  &--selected {
+    box-shadow: $shadow-md;
+    border-color: $brand-teal;
+    ring: 1px solid $brand-teal;
+    background-color: rgba($brand-teal, 0.05);
+
+    .plan-card__title {
+      color: $brand-teal;
+    }
+
+    .plan-card__feature-icon {
+      color: $brand-teal;
+    }
+
+    .plan-card__price-amount {
+      color: $brand-teal;
+    }
+  }
+
+  @include reduce-motion {
+    transition: none;
+  }
+
+  &__header {
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+    color: $brand-teal-dark;
+    font-family: $font-main-bold;
+  }
+
+  &__features {
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__feature {
+    gap: 0.5rem;
+    color: $charcoal;
+    font-size: 0.75rem;
+    font-family: $font-main;
+    @include flex-start;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__feature-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    color: #9ca3af;
+    margin-top: 0.125rem;
+    @include flex-center;
+  }
+
+  &__feature-text {
+    line-height: 1.375;
+    white-space: nowrap;
+  }
+
+  &__price {
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  &__price-amount {
+    font-size: 1.25rem;
+    color: $brand-teal-dark;
+    font-family: $font-main-bold;
+  }
+
+  &__price-label {
+    color: $brand-teal;
+    font-size: 0.875rem;
+    margin-left: 0.25rem;
+    font-family: $font-main;
+  }
+}

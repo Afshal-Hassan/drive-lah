@@ -1,0 +1,37 @@
+@use "./variables" as *;
+
+.main-layout {
+  background: $background;
+}
+
+.main-container {
+  gap: 0;
+  flex: 1;
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  @include flex-col;
+  margin-right: auto;
+
+  @media (min-width: $breakpoint-lg) {
+    gap: 2rem;
+    flex-direction: row;
+    padding: 1rem 1.5rem;
+  }
+}
+
+.content-container {
+  flex: 1;
+  padding: 1.5rem;
+  margin-bottom: 5rem;
+  border: 1px solid #f2f3f5;
+  background-color: #ffffff;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 2rem;
+    padding-top: 1.1rem;
+    margin-top: 1rem !important;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+}

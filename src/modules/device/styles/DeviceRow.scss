@@ -1,0 +1,84 @@
+@use "../../shared/styles/variables" as *;
+
+.device-row {
+  padding: 2rem 0;
+  border-bottom: 1px solid $very-light-gray;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &__title {
+    font-weight: 500;
+    color: $charcoal;
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__grid {
+    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $breakpoint-md) {
+      row-gap: 1.5rem;
+      column-gap: 3rem;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__column {
+    gap: 1.5rem;
+    @include flex-col;
+  }
+
+  &__field {
+    @include flex-col;
+  }
+
+  &__label {
+    display: block;
+    color: $gray-light;
+    font-size: 0.875rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem;
+    color: $gray-dark;
+    font-size: 0.875rem;
+    box-shadow: $shadow-sm;
+    border-radius: 0.375rem;
+    background-color: $white;
+    border: 1px solid $very-light-gray;
+    @include transition(border-color);
+
+    &:focus {
+      outline: none;
+      border-color: $brand-teal;
+      box-shadow: 0 0 0 3px rgba($brand-teal, 0.1);
+    }
+
+    &::placeholder {
+      color: $gray-light;
+    }
+
+    &--disabled {
+      color: #9ca3af;
+      cursor: not-allowed;
+      background-color: #f9fafb;
+    }
+  }
+
+  &__toggle-wrapper {
+    margin-bottom: 0.5rem;
+  }
+
+  &__help-text {
+    line-height: 1.5;
+    color: $gray-light;
+    font-size: 0.875rem;
+  }
+}

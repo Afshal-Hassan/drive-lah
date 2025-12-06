@@ -1,0 +1,93 @@
+@use "./variables" as *;
+
+.sidebar {
+  display: none;
+  width: 16rem;
+  padding: 4rem 2rem 2rem 0;
+
+  @media (min-width: $breakpoint-lg) {
+    display: block;
+  }
+
+  &__list {
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @include flex-col;
+  }
+
+  &__item {
+    font-weight: 500;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 0.975rem;
+    @include transition(color);
+    @include flex-center-between;
+    font-family: $font-main-bold;
+
+    &:focus,
+    &:focus-visible {
+      outline: 2px solid $brand-teal !important;
+      outline-offset: 2px !important;
+      border-radius: 4px;
+    }
+
+    /* COMPLETED */
+    &--completed {
+      color: $brand-teal-dark;
+      cursor: pointer;
+      @include transition(opacity);
+      @extend %focus-ring;
+
+      &:focus {
+        outline: 1px solid $white;
+        border-radius: 1px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    /* ACTIVE */
+    &--active {
+      color: $brand-teal;
+      font-weight: 700;
+      @extend %active-sidebar-item;
+    }
+
+    /* DISABLED */
+    &--disabled {
+      opacity: 0.7;
+      color: $gray-light;
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon {
+    background: $brand-teal-dark;
+    color: $white;
+    border-radius: 50%;
+    padding: 0.25rem 0.4rem;
+    font-size: 0.7rem;
+    @include flex-center;
+    @include transition(background-color);
+  }
+}
+
+/* Accessibility improvements */
+@include high-contrast {
+  .sidebar__item--active {
+    border-left-width: 3px;
+  }
+}
+
+/* Reduce motion support */
+@include reduce-motion {
+  .sidebar,
+  .sidebar__item,
+  .sidebar__icon {
+    transition-duration: 0.01ms !important;
+  }
+}

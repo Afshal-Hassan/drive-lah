@@ -1,0 +1,127 @@
+@use "./variables" as *;
+
+.mobile-select-nav {
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+
+  .trigger-button {
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    color: $gray-dark;
+    position: relative;
+    border-radius: 0.375rem;
+    font-family: $font-main;
+    background-color: $white;
+    border: 1px solid $very-light-gray;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    @include transition();
+    @include flex-center-between;
+
+    &:focus {
+      outline: none;
+      border-color: $brand-teal;
+      box-shadow: 0 0 0 1px $brand-teal;
+    }
+
+    &.open {
+      border-color: $brand-teal;
+      box-shadow: 0 0 0 1px $brand-teal;
+    }
+
+    .chevron {
+      right: 0;
+      inset-y: 0;
+      position: absolute;
+      @include flex-center;
+      pointer-events: none;
+      padding-right: 0.75rem;
+      @include transition(transform);
+
+      &.open {
+        transform: rotate(180deg);
+      }
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: $gray-light;
+      }
+    }
+
+    .label {
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    z-index: 10;
+    overflow: auto;
+    max-height: 15rem;
+    position: absolute;
+    padding: 0.25rem 0;
+    margin-top: 0.25rem;
+    box-shadow: $shadow-md;
+    border-radius: 0.375rem;
+    background-color: $white;
+    animation: fadeInZoom 0.1s ease forwards;
+
+    li {
+      a {
+        display: block;
+        cursor: pointer;
+        font-weight: 400;
+        color: $gray-dark;
+        position: relative;
+        text-decoration: none;
+        font-family: $font-main;
+        padding: 0.75rem 2.25rem 0.75rem 1rem;
+        @include flex-center-between;
+        @include transition(background-color);
+
+        &:hover {
+          background-color: $white;
+        }
+
+        &.selected {
+          font-weight: 500;
+          color: $brand-teal-dark;
+          background-color: $white;
+
+          .checkmark {
+            inset-y: 0;
+            right: 1rem;
+            position: absolute;
+            @include flex-center;
+            color: $brand-teal-dark;
+
+            svg {
+              width: 1.25rem;
+              height: 1.25rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes fadeInZoom {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}

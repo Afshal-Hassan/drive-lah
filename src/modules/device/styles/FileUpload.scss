@@ -1,0 +1,80 @@
+@use "../../shared/styles/variables" as *;
+
+.file-upload {
+  width: 100%;
+  height: 8rem;
+  cursor: pointer;
+  position: relative;
+  @include flex-center;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  background-color: $white;
+  border: 1px solid $very-light-gray;
+  @include transition(background-color);
+
+  &:hover:not(&--disabled) {
+    background-color: #f9fafb;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f9fafb;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__preview {
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    position: relative;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.25rem;
+  }
+
+  &__overlay {
+    inset: 0;
+    position: absolute;
+    @include flex-center;
+    background-color: rgba(0, 0, 0, 0);
+    @include transition(background-color);
+
+    .file-upload:hover & {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__change-text {
+    font-size: 0.75rem;
+    color: transparent;
+    @include transition(color);
+
+    .file-upload:hover & {
+      color: $white;
+    }
+  }
+
+  &__placeholder {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  &__upload-text {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: $brand-teal-dark;
+    text-decoration: underline;
+
+    &--disabled {
+      color: #9ca3af;
+    }
+  }
+}
