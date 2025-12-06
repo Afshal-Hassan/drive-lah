@@ -37,7 +37,12 @@ export default function useSubscription() {
   const handleCardInput = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      dispatch(updateCardField({ field: name, value }));
+      dispatch(
+        updateCardField({
+          field: name as "cardNumber" | "expiry" | "cvc",
+          value,
+        }),
+      );
     },
     [dispatch],
   );

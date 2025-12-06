@@ -12,6 +12,8 @@ const INITIAL_STATE: SubscriptionState = {
   cvc: "",
 };
 
+type CardField = keyof Pick<SubscriptionState, "cardNumber" | "expiry" | "cvc">;
+
 const subscriptionSlice = createSlice({
   name: "subscription",
   initialState: INITIAL_STATE,
@@ -29,10 +31,10 @@ const subscriptionSlice = createSlice({
 
     updateCardField: (
       state,
-      action: PayloadAction<{ field: string; value: string }>,
+      action: PayloadAction<{ field: CardField; value: string }>,
     ) => {
       const { field, value } = action.payload;
-      (state as any)[field] = value;
+      state[field] = value;
     },
 
     resetSubscription: () => {

@@ -47,7 +47,7 @@ export default function Select() {
         <ul className="dropdown-menu" role="listbox">
           <List
             items={ROUTES}
-            renderItem={(route, index) => {
+            renderItem={(route) => {
               const isSelected = activeRoute.path === route.path;
               return (
                 <li key={route.path}>

@@ -9,6 +9,11 @@ export default defineConfig({
     port: 5173,
   },
 
+  /* Build */
+  build: {
+    outDir: "build",
+  },
+
   resolve: {
     alias: {
       "@/shared": path.resolve(__dirname, "src/modules/shared"),
