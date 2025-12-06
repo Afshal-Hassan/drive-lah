@@ -7,8 +7,8 @@ export default function Footer() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { steps, currentStepIndex } = useAppSelector((state) => state.sidebar);
   const { selectedPlan } = useAppSelector((state) => state.subscription);
+  const { steps, currentStepIndex } = useAppSelector((state) => state.sidebar);
 
   const isDisabled = location.pathname === "/device";
 

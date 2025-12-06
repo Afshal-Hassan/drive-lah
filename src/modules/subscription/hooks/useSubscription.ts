@@ -1,5 +1,7 @@
+import storage from "redux-persist/lib/storage";
 import { PlanType } from "@/subscription/types";
 import { ChangeEvent, useCallback } from "react";
+import { resetNavigation } from "@/shared/slices/sidebar";
 import {
   useAppDispatch,
   useAppSelector,
@@ -16,8 +18,11 @@ export default function useSubscription() {
   const dispatch = useAppDispatch();
   const state = useAppSelector((state) => state.subscription);
 
-  const panelRef = useClickOutside(() => {
+  const panelRef = useClickOutside(async () => {
     dispatch(resetSubscription());
+    dispatch(resetNavigation());
+    await storage.removeItem("persist:sidebar");
+    await storage.removeItem("persist:subscription");
   });
 
   const handlePlanSelect = useCallback(

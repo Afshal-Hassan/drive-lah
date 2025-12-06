@@ -15,23 +15,28 @@ import {
   REGISTER,
 } from "redux-persist";
 
-const persistConfig = {
-  key: "root",
-  version: 1,
+const devicePersistConfig = {
+  key: "devices",
   storage,
-  whitelist: ["subscription", "device", "sidebar"],
 };
 
-const rootReducer = combineReducers({
-  device: deviceReducer,
-  sidebar: sidebarReducer,
-  subscription: subscriptionReducer,
+const sidebarPersistConfig = {
+  key: "sidebar",
+  storage,
+};
+
+const subscriptionPersistConfig = {
+  key: "subscription",
+  storage,
+};
+
+const persistedRootReducer = combineReducers({
+  device: persistReducer(devicePersistConfig, deviceReducer),
+  sidebar: persistReducer(sidebarPersistConfig, sidebarReducer),
+  subscription: persistReducer(subscriptionPersistConfig, subscriptionReducer),
 });
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: persistedRootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

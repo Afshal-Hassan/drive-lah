@@ -20,19 +20,27 @@ const INITIAL_DEVICES: Device[] = [
   },
 ];
 
+interface DeviceState {
+  items: Device[];
+}
+
+const INITIAL_STATE: DeviceState = {
+  items: INITIAL_DEVICES,
+};
+
 const deviceSlice = createSlice({
   name: "device",
-  initialState: INITIAL_DEVICES,
+  initialState: INITIAL_STATE,
   reducers: {
     updateDevice: (state, action: PayloadAction<Device>) => {
-      const index = state.findIndex((d) => d.id === action.payload.id);
+      const index = state.items.findIndex((d) => d.id === action.payload.id);
       if (index !== -1) {
-        state[index] = action.payload;
+        state.items[index] = action.payload;
       }
     },
 
-    resetDevices: () => {
-      return INITIAL_DEVICES;
+    resetDevices: (state) => {
+      state.items = INITIAL_DEVICES;
     },
   },
 });
