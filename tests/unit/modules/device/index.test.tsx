@@ -6,6 +6,10 @@ import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
+vi.mock("react-router-dom", () => ({
+  useNavigate: () => vi.fn(),
+}));
+
 vi.mock("@/device/components", () => ({
   DeviceRow: ({ device, onChange }: any) => (
     <div data-testid={`device-row-${device.id}`}>
@@ -38,12 +42,23 @@ vi.mock("@/shared/hooks", async () => {
   };
 });
 
+const subscriptionReducer = (state = { selectedPlan: "basic" }) => state;
+
 const createMockStore = (devices?: any[]) => {
   return configureStore({
     reducer: {
       device: deviceReducer,
+      subscription: subscriptionReducer,
     },
-    preloadedState: devices ? { device: devices } : undefined,
+    preloadedState: devices
+      ? {
+          device: { items: devices },
+          subscription: { selectedPlan: "basic" },
+        }
+      : {
+          device: { items: [] },
+          subscription: { selectedPlan: "basic" },
+        },
   });
 };
 
@@ -63,6 +78,7 @@ describe("Device Tests", () => {
       type: "Primary GPS",
       serialNumber: "",
       isByod: true,
+      image: null,
     },
     {
       id: 2,
@@ -70,6 +86,7 @@ describe("Device Tests", () => {
       type: "Secondary GPS",
       serialNumber: "",
       isByod: true,
+      image: null,
     },
   ];
 
@@ -77,7 +94,7 @@ describe("Device Tests", () => {
     vi.clearAllMocks();
   });
 
-  describe("Initial Rendering", () => {
+  describe("Device Management Page Tests - Cross Browser", () => {
     it("renders the device management title", () => {
       renderWithRedux(<Device />, initialDevices);
       expect(screen.getByText("Device Management")).toBeInTheDocument();
